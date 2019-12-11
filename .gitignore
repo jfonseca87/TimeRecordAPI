@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/TimeRegisterAPI
+/TimeRegisterAPI/obj
+/TimeRegisterAPI/bin/Debug/netcoreapp3.0/Properties
+/TimeRegisterAPI/bin/Debug/netcoreapp3.0
