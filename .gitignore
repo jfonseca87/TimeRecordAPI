@@ -6,3 +6,5 @@
 /TimeRegisterAPI/obj
 /TimeRegisterAPI/bin/Debug/netcoreapp3.0/Properties
 /TimeRegisterAPI/bin/Debug/netcoreapp3.0
+/bin
+/obj
