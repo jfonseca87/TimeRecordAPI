@@ -9,5 +9,6 @@ namespace TimeRegisterAPI.Domain
         public decimal UsedTime { get; set; }
         public string Comments { get; set; }
         public DateTime DateRecord { get; set; }
+        public bool State { get; set; }
     }
 }

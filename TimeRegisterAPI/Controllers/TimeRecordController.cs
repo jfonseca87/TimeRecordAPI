@@ -44,11 +44,12 @@ namespace TimeRegisterAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult SaveTimeRecord(TimeRecord entity)
+        public async Task<IActionResult> SaveTimeRecord(TimeRecord entity)
         {
             try
             {
-                _timeRecordBusiness.SaveTimeRecord(entity);
+                var response = await _timeRecordBusiness.SaveTimeRecord(entity);
+                entity.Id = Convert.ToInt32(response);
                 return Created("", entity);
             }
             catch (Exception ex)
@@ -58,12 +59,40 @@ namespace TimeRegisterAPI.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateTimeRecord(TimeRecord entity)
+        public async Task<IActionResult> UpdateTimeRecord(TimeRecord entity)
         {
             try
             {
-                _timeRecordBusiness.UpdateTimeRecord(entity);
-                return Ok(entity);
+                var response = await _timeRecordBusiness.UpdateTimeRecord(entity);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+        }
+
+        [HttpPatch()]
+        public async Task<IActionResult> UpdateTimeRecordState(TimeRecord entity)
+        {
+            try
+            {                
+                var response = await _timeRecordBusiness.UpdateTimeRecordState(entity.Id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteTimeRecord(int id)
+        {
+            try
+            {
+                var response = await _timeRecordBusiness.DeleteTimeRecord(id);
+                return Ok(response);
             }
             catch (Exception ex)
             {

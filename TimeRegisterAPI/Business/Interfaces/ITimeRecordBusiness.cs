@@ -11,5 +11,7 @@ namespace TimeRegisterAPI.Business.Interfaces
         Task<TimeRecord> GetTimeRecordById(int id);
         Task<object> SaveTimeRecord(TimeRecord entity);
         Task<object> UpdateTimeRecord(TimeRecord entity);
+        Task<object> UpdateTimeRecordState(int id);
+        Task<object> DeleteTimeRecord(int id);
     }
 }

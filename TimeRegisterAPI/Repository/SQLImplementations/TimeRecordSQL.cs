@@ -127,5 +127,39 @@ namespace TimeRegisterAPI.Repository.SQLImplementations
                 }
             }
         }
+
+        public async Task<object> UpdateTimeRecordState(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(_options.ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("UpdateStateTimeRecord", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@IdTimeRecord", id));
+
+                    await conn.OpenAsync();
+                    var response = await cmd.ExecuteScalarAsync();
+
+                    return response;
+                }
+            }
+        }
+
+        public async Task<object> DeleteTimeRecord(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(_options.ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("DeleteTimeRecord", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@IdTimeRecord", id));
+
+                    await conn.OpenAsync();
+                    var response = await cmd.ExecuteScalarAsync();
+
+                    return response;
+                }
+            }
+        }
     }
 }

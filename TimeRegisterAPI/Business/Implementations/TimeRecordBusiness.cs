@@ -35,9 +35,9 @@ namespace TimeRegisterAPI.Business.Implementations
         {
             TimeRecord recordUpdate = await _timeRecordRepository.GetTimeRecordById(entity.Id);
 
-            if (recordUpdate == null)
+            if (recordUpdate?.Id == 0)
             {
-                throw new Exception("Time Record does not exists");
+                throw new Exception("Time record not found");
             }
 
             recordUpdate.ActivityNumber = entity.ActivityNumber;
@@ -45,6 +45,30 @@ namespace TimeRegisterAPI.Business.Implementations
             recordUpdate.Comments = entity.Comments;
 
             return await _timeRecordRepository.UpdateTimeRecord(recordUpdate);
+        }
+
+        public async Task<object> UpdateTimeRecordState(int id)
+        {
+            TimeRecord timeRecordUpdateState = await _timeRecordRepository.GetTimeRecordById(id);
+
+            if (timeRecordUpdateState?.Id == 0)
+            {
+                throw new Exception("Time record not exists");
+            }
+
+            return await _timeRecordRepository.UpdateTimeRecordState(id);
+        }
+
+        public async Task<object> DeleteTimeRecord(int id)
+        {
+            TimeRecord recordDelete = await _timeRecordRepository.GetTimeRecordById(id);
+
+            if (recordDelete?.Id == 0)
+            {
+                throw new Exception("Time record not found");
+            }
+
+            return await _timeRecordRepository.DeleteTimeRecord(recordDelete.Id);
         }
     }
 }
