@@ -43,7 +43,8 @@ namespace TimeRegisterAPI.Repository.SQLImplementations
                                 ActivityNumber = Convert.ToInt32(dt["ActivityNumber"]),
                                 UsedTime = Convert.ToDecimal(dt["UsedTime"]),
                                 Comments = dt["Comments"].ToString(),
-                                DateRecord =Convert.ToDateTime(dt["DateRecord"]),
+                                DateRecord = Convert.ToDateTime(dt["DateRecord"]),
+                                State = Convert.ToBoolean(dt["State"])
                             });
                         }
 
